@@ -202,6 +202,9 @@ class StructuredGLM3ChatAgent(Agent):
             input_variables=input_variables,
             memory_prompts=memory_prompts,
         )
+        print("--------------------prompt-------------------")
+        print(prompt)
+        print("--------------------prompt-------------------")
         llm_chain = LLMChain(
             llm=llm,
             prompt=prompt,
