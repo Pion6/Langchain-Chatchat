@@ -325,9 +325,18 @@ class LLMWeatherChain(Chain):
 
 
 def weathercheck(query: str):
+    # print("------------weathercheck----------------")
+    # print(query)
+    # print("------------weathercheck----------------")
     model = model_container.MODEL
     llm_weather = LLMWeatherChain.from_llm(model, verbose=True, prompt=PROMPT)
+    # print("------------PROMPT----------------")
+    # print(PROMPT)
+    # print("------------PROMPT----------------")
     ans = llm_weather.run(query)
+    print("------------ans----------------")
+    print(type(ans))
+    print("------------ans----------------")
     return ans
 
 

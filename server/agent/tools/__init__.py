@@ -9,3 +9,6 @@ from .search_internet import search_internet, SearchInternetInput
 from .wolfram import wolfram, WolframInput
 from .search_youtube import search_youtube, YoutubeInput
 from .arxiv import arxiv, ArxivInput
+from .course_schedule import course_schedule_check, CourseScheduleSchema
+from .course_schedule2 import course_schedule_check2, CourseScheduleSchema2
+from .course_schedule2 import CourseSchedule

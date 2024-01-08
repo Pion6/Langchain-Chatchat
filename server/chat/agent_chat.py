@@ -59,9 +59,6 @@ async def agent_chat(query: str = Body(..., description="用户输入", examples
         kb_list = {x["kb_name"]: x for x in get_kb_details()}
         model_container.DATABASE = {name: details['kb_info'] for name, details in kb_list.items()}
 
-        # print("--------------")
-        # print(kb_list)
-        # print("--------------")
 
         if Agent_MODEL:
             ## 如果有指定使用Agent模型来完成任务
@@ -82,12 +79,6 @@ async def agent_chat(query: str = Body(..., description="用户输入", examples
             input_variables=["input", "intermediate_steps", "history"]
         )
         output_parser = CustomOutputParser()
-        # print('---------prompt_template_agent----------')
-        # # print(prompt_template_agent.message[0].prompt)
-        # # print(prompt_template_agent)
-        # # print(prompt_template_agent.format())
-        #
-        # print('---------prompt_template_agent----------')
         llm_chain = LLMChain(llm=model, prompt=prompt_template_agent)
         # 把history转成agent的memory
         memory = ConversationBufferWindowMemory(k=HISTORY_LEN * 2)
@@ -99,11 +90,7 @@ async def agent_chat(query: str = Body(..., description="用户输入", examples
             else:
                 # 添加AI消息
                 memory.chat_memory.add_ai_message(message.content)
-        # print(f"----------------{model_container.MODEL.model_name}----------------")
-        # print(f'----------------{"chatglm3" in model_container.MODEL.model_name}----------------')
         if "chatglm3" in model_container.MODEL.model_name:
-            print("----------------使用chatglm3模型----------------")
-            # print(f"----------------{prompt_template}----------------")
             agent_executor = initialize_glm3_agent(
                 llm=model,
                 tools=tools,
@@ -140,11 +127,6 @@ async def agent_chat(query: str = Body(..., description="用户输入", examples
                 tools_use = []
                 # Use server-sent-events to stream the response
                 data = json.loads(chunk)
-                print("---------------")
-                print(data)
-                print(Status.start)
-                print(Status.complete)
-                print("---------------")
                 if data["status"] == Status.start or data["status"] == Status.complete:
                     continue
                 elif data["status"] == Status.error:
@@ -167,7 +149,7 @@ async def agent_chat(query: str = Body(..., description="用户输入", examples
                     yield json.dumps({"final_answer": data["final_answer"]}, ensure_ascii=False)
                 else:
                     yield json.dumps({"answer": data["llm_token"]}, ensure_ascii=False)
-                print(tools_use)
+                # print(tools_use)
 
 
         else:
@@ -195,7 +177,7 @@ async def agent_chat(query: str = Body(..., description="用户输入", examples
                     final_answer = data["final_answer"]
                 else:
                     answer += data["llm_token"]
-            print(answer)
+            # print(answer)
             yield json.dumps({"answer": answer, "final_answer": final_answer}, ensure_ascii=False)
         await task
 

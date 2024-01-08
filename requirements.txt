@@ -1,5 +1,7 @@
 # API requirements
 
+optimum==1.16.1
+auto-gptq==0.6.0
 langchain==0.0.344
 langchain-experimental>=0.0.42
 pydantic==1.10.13

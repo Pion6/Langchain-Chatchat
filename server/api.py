@@ -10,6 +10,7 @@ from configs.server_config import OPEN_CROSS_DOMAIN
 import argparse
 import uvicorn
 from fastapi import Body
+from server.chat.chat_router_chain import chat_router_chain
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse
 from server.chat.chat import chat
@@ -78,6 +79,10 @@ def mount_app_routes(app: FastAPI, run_mode: str = None):
              tags=["Chat"],
              summary="返回llm模型对话评分",
              )(chat_feedback)
+    app.post("/chat/chat_router_chain",
+             tags=["Chat"],
+             summary="路由链"
+             )(chat_router_chain)
 
     # 知识库相关接口
     mount_knowledge_routes(app)
