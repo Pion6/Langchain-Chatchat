@@ -46,7 +46,7 @@ async def chat_router_chain(query: str = Body(..., description="用户输入", e
         <标签种类>
     {tag}\t<标签：default>:<问题种类：不属于以上任何一个分类，则属于默认问题>
         </标签种类>
-    <提示>注意问题名称一定属于上述问题中的一种！！！请分类以下问题,请输出以下内容之一：<industry/>或<product/>或<default/></提示>
+    <提示>注意问题名称一定属于上述问题中的一种！！！请分类以下问题,请输出以下内容之一：{options}</提示>
     <问题>请给出以下问题的标签：{query}</问题>'''
 
     classify_prompt_template = ChatPromptTemplate.from_template(classify_prompt)
@@ -55,12 +55,15 @@ async def chat_router_chain(query: str = Body(..., description="用户输入", e
         temperature=temperature,
         max_tokens=None,
     )
+    options = ""
     tag = ""
     for i in answer_template:
         tag += "\t\t<标签：{}>:<问题种类：{}>\n".format(i["name"], i["description"])
-
+        options += "<{}/>或".format(i["name"])
+    options += "<default/>"
+    print(classify_prompt_template.format(query=query, tag=tag, options=options))
     chain = LLMChain(prompt=classify_prompt_template, llm=model, memory=None)
-    res = chain.run(tag=tag, query=query)
+    res = chain.run(tag=tag, query=query, options=options)
 
     async def chat_iterator(res: str) -> AsyncIterable[str]:
         nonlocal history, max_tokens
