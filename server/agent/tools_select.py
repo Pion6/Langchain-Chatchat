@@ -10,9 +10,9 @@ tools = [
         description="Useful for when you need to answer questions about simple calculations",
         args_schema=CalculatorInput,
     ),
-    StructuredTool.from_function(
+    Tool.from_function(
         func=course_schedule_check2,
-        name="course_schedule_check",
+        name="course_schedule_check2",
         description=(
             "Useful for when you need to answer questions about the course timetable,inputs are multi parameters,need multi input variables,name indicates whose timetable it is, and time refers to the period of the timetable queried."
             "To use the tool, you must provide two following parameters "

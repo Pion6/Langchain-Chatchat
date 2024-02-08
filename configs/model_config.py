@@ -3,7 +3,7 @@ import os
 # 可以指定一个绝对路径，统一存放所有的Embedding和LLM模型。
 # 每个模型可以是一个单独的目录，也可以是某个目录下的二级子目录。
 # 如果模型目录名称和 MODEL_PATH 中的 key 或 value 相同，程序会自动检测加载，无需修改 MODEL_PATH 中的路径。
-MODEL_ROOT_PATH = "/mnt/16t/llm"
+MODEL_ROOT_PATH = "D:\python\model"
 
 # 选用的 Embedding 名称
 EMBEDDING_MODEL = "bge-large-zh"
@@ -21,7 +21,8 @@ EMBEDDING_MODEL_OUTPUT_PATH = "output"
 # 如果你的显存不足，可使用 Qwen-1_8B-Chat, 该模型 FP16 仅需 3.8G显存。
 # LLM_MODELS = ["chatglm3-6b", "zhipu-api", "openai-api"] # "Qwen-1_8B-Chat",
 # LLM_MODELS = ["Qwen-7B-Chat", "zhipu-api", "openai-api"]
-LLM_MODELS = ["Qwen-14B-Chat-Int4", "chatglm3-6b", "openai-api"]
+# LLM_MODELS = ["Qwen-14B-Chat-Int4", "chatglm3-6b", "openai-api"]
+LLM_MODELS = ["qianfan-api"]
 # AgentLM模型的名称 (可以不指定，指定之后就锁定进入Agent之后的Chain的模型，不指定就是LLM_MODELS[0])
 Agent_MODEL = None
 # Agent_MODEL = "chatglm3-6b"
@@ -79,8 +80,8 @@ ONLINE_LLM_MODEL = {
     "qianfan-api": {
         "version": "ERNIE-Bot",  # 注意大小写。当前支持 "ERNIE-Bot" 或 "ERNIE-Bot-turbo"， 更多的见官方文档。
         "version_url": "",  # 也可以不填写version，直接填写在千帆申请模型发布的API地址
-        "api_key": "",
-        "secret_key": "",
+        "api_key": "RLUKagpRnnk81GVQAUO3o9KC",
+        "secret_key": "LKgyhgYxy2zBVDvPE3yMtKjeBnnXOjaZ",
         "provider": "QianFanWorker",
     },
 
@@ -323,4 +324,5 @@ SUPPORT_AGENT_MODEL = [
     "Qwen",
     "chatglm3",
     "xinghuo-api",
+    "qianfan-api",
 ]

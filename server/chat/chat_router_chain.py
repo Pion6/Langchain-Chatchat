@@ -72,6 +72,7 @@ async def chat_router_chain(query: str = Body(..., description="用户输入", e
         category = []
         is_default = 0
         category_prompt = ""
+        prompt_name = "empty"
         for j in answer_template:
             if j["name"] in res:
                 is_default = is_default + 1
