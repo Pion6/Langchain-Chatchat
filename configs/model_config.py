@@ -323,4 +323,5 @@ SUPPORT_AGENT_MODEL = [
     "Qwen",
     "chatglm3",
     "xinghuo-api",
+    "qianfan-api",
 ]
