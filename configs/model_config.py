@@ -21,7 +21,8 @@ EMBEDDING_MODEL_OUTPUT_PATH = "output"
 # 如果你的显存不足，可使用 Qwen-1_8B-Chat, 该模型 FP16 仅需 3.8G显存。
 # LLM_MODELS = ["chatglm3-6b", "zhipu-api", "openai-api"] # "Qwen-1_8B-Chat",
 # LLM_MODELS = ["Qwen-7B-Chat", "zhipu-api", "openai-api"]
-LLM_MODELS = ["Qwen-14B-Chat-Int4", "chatglm3-6b", "openai-api"]
+LLM_MODELS = ["Qwen-14B-Chat-Int4", "openai-api"]
+# LLM_MODELS = ["chatglm3-6b", "openai-api"]
 # AgentLM模型的名称 (可以不指定，指定之后就锁定进入Agent之后的Chain的模型，不指定就是LLM_MODELS[0])
 Agent_MODEL = None
 # Agent_MODEL = "chatglm3-6b"
@@ -30,13 +31,13 @@ Agent_MODEL = None
 LLM_DEVICE = "auto"
 
 # 历史对话轮数
-HISTORY_LEN = 3
+HISTORY_LEN = 0
 
 # 大模型最长支持的长度，如果不填写，则使用模型默认的最大长度，如果填写，则为用户设定的最大长度
 MAX_TOKENS = None
 
 # LLM通用对话参数
-TEMPERATURE = 0.7
+TEMPERATURE = 0.05
 # TOP_P = 0.95 # ChatOpenAI暂不支持该参数
 
 ONLINE_LLM_MODEL = {

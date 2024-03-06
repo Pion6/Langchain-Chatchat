@@ -1,5 +1,6 @@
 # API requirements
 
+
 optimum==1.16.1
 auto-gptq==0.6.0
 langchain==0.0.344

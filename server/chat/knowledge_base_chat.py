@@ -15,7 +15,7 @@ import json
 from pathlib import Path
 from urllib.parse import urlencode
 from server.knowledge_base.kb_doc_api import search_docs
-
+import datetime
 
 async def knowledge_base_chat(query: str = Body(..., description="用户输入", examples=["你好"]),
                               knowledge_base_name: str = Body(..., description="知识库名称", examples=["samples"]),
@@ -74,6 +74,17 @@ async def knowledge_base_chat(query: str = Body(..., description="用户输入",
         )
         docs = search_docs(query, knowledge_base_name, top_k, score_threshold)
         context = "\n".join([doc.page_content for doc in docs])
+
+        print("--------------------knowledge_base_chat-------------------")
+        # print("docs:", docs)
+        print("query:", query)
+        print("context:\n", context)
+        with open("/home/star/linxiaoxu/sever/Langchain-Chatchat/record.txt", "w", encoding="utf-8") as f:
+            current_time = datetime.datetime.now()
+            f.write(current_time.strftime("%Y-%m-%d %H:%M:%S") + "\n")
+            f.write("\n"+context+"\n")
+        print("--------------------knowledge_base_chat-------------------")
+
         if len(docs) == 0:  # 如果没有找到相关文档，使用empty模板
             prompt_template = get_prompt_template("knowledge_base_chat", "empty")
         else:

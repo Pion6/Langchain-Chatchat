@@ -13,22 +13,22 @@ CACHED_VS_NUM = 1
 CACHED_MEMO_VS_NUM = 10
 
 # 知识库中单段文本长度(不适用MarkdownHeaderTextSplitter)
-CHUNK_SIZE = 250
+CHUNK_SIZE = 1000
 
 # 知识库中相邻文本重合长度(不适用MarkdownHeaderTextSplitter)
 OVERLAP_SIZE = 50
 
 # 知识库匹配向量数量
-VECTOR_SEARCH_TOP_K = 3
+VECTOR_SEARCH_TOP_K = 2
 
 # 知识库匹配相关度阈值，取值范围在0-1之间，SCORE越小，相关度越高，取到1相当于不筛选，建议设置在0.5左右
-SCORE_THRESHOLD = 1
+SCORE_THRESHOLD = 0.85
 
 # 默认搜索引擎。可选：bing, duckduckgo, metaphor
 DEFAULT_SEARCH_ENGINE = "duckduckgo"
 
 # 搜索引擎匹配结题数量
-SEARCH_ENGINE_TOP_K = 3
+SEARCH_ENGINE_TOP_K = 1
 
 
 # Bing 搜索必备变量

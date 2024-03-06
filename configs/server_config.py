@@ -42,7 +42,7 @@ FSCHAT_MODEL_WORKERS = {
         # vllm对一些模型支持还不成熟，暂时默认关闭
         # fschat=0.2.33的代码有bug, 如需使用，源码修改fastchat.server.vllm_worker，
         # 将103行中sampling_params = SamplingParams的参数stop=list(stop)修改为stop= [i for i in stop if i!=""]
-        "infer_turbo": False,
+        "infer_turbo": True,
 
         # model_worker多卡加载需要配置的参数
         # "gpus": None, # 使用的GPU，以str的格式指定，如"0,1"，如失效请使用CUDA_VISIBLE_DEVICES="0,1"等形式指定
@@ -77,7 +77,7 @@ FSCHAT_MODEL_WORKERS = {
         # 'seed':0,
         # 'worker_use_ray':False,
         # 'pipeline_parallel_size':1,
-        # 'tensor_parallel_size':1,
+        'tensor_parallel_size':4,
         # 'block_size':16,
         # 'swap_space':4 , # GiB
         # 'gpu_memory_utilization':0.90,
